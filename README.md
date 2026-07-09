@@ -2,6 +2,8 @@
 
 Same Orbiq site — same UI, layout, styling, and responsiveness — rebuilt with **Nunjucks templates** and a **Vite** build pipeline instead of three hand-duplicated HTML files.
 
+Live link: [Orbiq](https://keshav-soft-task2.vercel.app)
+
 Nothing about the design was changed. This task was purely about project *structure*.
 
 ## Templating engine and bundler chosen
