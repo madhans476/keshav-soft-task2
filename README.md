@@ -1,6 +1,6 @@
 # Orbiq — Nunjucks + Vite Edition (Task 2)
 
-This is a **separate project** from the Task 1 plain-HTML version. Same Orbiq site — same UI, layout, styling, and responsiveness — rebuilt with **Nunjucks templates** and a **Vite** build pipeline instead of three hand-duplicated HTML files.
+Same Orbiq site — same UI, layout, styling, and responsiveness — rebuilt with **Nunjucks templates** and a **Vite** build pipeline instead of three hand-duplicated HTML files.
 
 Nothing about the design was changed. This task was purely about project *structure*.
 
@@ -110,12 +110,6 @@ npm run render    # re-renders index.html / about.html / contact.html from the
 
 `npm run build` was run and verified during development of this project: it produces `dist/index.html`, `dist/about.html`, `dist/contact.html`, plus hashed, bundled `dist/assets/style-*.css` and `dist/assets/contact-*.js` — CDN links (Bootstrap, fonts) are left untouched, as expected.
 
-## A note on submission (separate repos, separate hosting)
-
-Your task PDF also says not to combine tasks, and to use a separate Git repo and a separate live link per task. That part is on your end (I can't create GitHub repos or deploy hosting for you), but concretely:
-
-- **Git:** create a new, empty repository for this project only (e.g. `orbiq-nunjucks-vite`) — don't push it into the same repo as your Task 1 plain-HTML files.
-- **Hosting:** any static host that runs `npm install && npm run build` and serves the `dist/` folder works — e.g. Netlify or Vercel (both auto-detect Vite), or GitHub Pages by publishing the `dist/` folder after running the build. Keep this deployment separate from wherever Task 1 is hosted.
 
 ## Honest notes
 
