@@ -1,0 +1,25 @@
+{# src/templates/layouts/base.njk
+   The one layout every page extends. Defines the full HTML skeleton
+   and includes every shared partial exactly once. Pages only ever
+   provide {% block content %} (and optionally {% block extra_scripts %}
+   for page-specific JS like the contact form validator). #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include "partials/head.njk" %}
+</head>
+<body>
+
+  {% include "partials/navbar.njk" %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "partials/footer.njk" %}
+  {% include "partials/scripts.njk" %}
+  {% block extra_scripts %}{% endblock %}
+
+</body>
+</html>

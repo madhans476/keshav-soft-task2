@@ -1,0 +1,166 @@
+{# src/templates/pages/contact.njk #}
+{% extends "layouts/base.njk" %}
+{% from "partials/macros.njk" import faq_item %}
+
+{% set title = "Contact " + siteName + " — Talk to our team" %}
+{% set description = "Get in touch with " + siteName + ": send us a message, find our office, or check answers to common questions." %}
+{% set page = "contact" %}
+
+{% block content %}
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="page-header">
+    <div class="container text-center">
+      <p class="eyebrow mb-2">Contact</p>
+      <h1 class="mb-3">Let's talk about your workflow</h1>
+      <p class="mb-0 opacity-75 mx-auto" style="max-width: 600px;">
+        Questions about pricing, integrations, or a specific process you want to automate —
+        send us a note and a real person will reply within one business day.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== FORM + CONTACT INFO ==================== -->
+  <section class="section">
+    <div class="container">
+      <div class="row g-5">
+
+        <!-- Contact form -->
+        <div class="col-lg-7">
+          <h2 class="h4 mb-4">Send us a message</h2>
+          <form id="contactForm" class="row g-3 needs-validation" novalidate>
+
+            <div class="col-md-6">
+              <label for="fullName" class="form-label">Full name</label>
+              <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Priya Sharma" required minlength="2">
+              <div class="invalid-feedback">Please enter your full name.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="priya@company.com" required>
+              <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone number</label>
+              <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 98765 43210"
+                     pattern="^[0-9+()\-\s]{7,20}$" required>
+              <div class="invalid-feedback">Please enter a valid phone number.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="subject" class="form-label">Subject</label>
+              <select class="form-select" id="subject" name="subject" required>
+                <option value="" selected disabled>Choose a topic&hellip;</option>
+                <option value="sales">Sales &amp; pricing</option>
+                <option value="support">Product support</option>
+                <option value="partnership">Partnership</option>
+                <option value="other">Something else</option>
+              </select>
+              <div class="invalid-feedback">Please choose a subject.</div>
+            </div>
+
+            <div class="col-12">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="5"
+                        placeholder="Tell us a bit about the process you're hoping to automate&hellip;"
+                        required minlength="10"></textarea>
+              <div class="invalid-feedback">Please enter a message (at least 10 characters).</div>
+            </div>
+
+            <div class="col-12 form-check">
+              <input type="checkbox" class="form-check-input" id="consent" required>
+              <label class="form-check-label small text-muted-2" for="consent">
+                I agree to be contacted about my enquiry.
+              </label>
+              <div class="invalid-feedback">Please confirm you're okay being contacted.</div>
+            </div>
+
+            <div class="col-12">
+              <button class="btn btn-primary btn-lg" type="submit">
+                Send message <i class="bi bi-send-fill ms-1"></i>
+              </button>
+            </div>
+
+            <!-- Shown after successful (client-side) validation -->
+            <div class="col-12">
+              <div id="formSuccess" class="alert alert-success d-none mt-2" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>Thanks — your message looks good. In a live deployment this would now be sent to our team.
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Contact info -->
+        <div class="col-lg-5">
+          <h2 class="h4 mb-4">Reach us directly</h2>
+          <div class="d-flex gap-3 mb-4 contact-info-item">
+            <div class="icon-tile"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <div class="fw-semibold">Office</div>
+              <p class="text-muted-2 mb-0 small">4th Floor, Ambience Tech Park, Perungudi,<br>Chennai, Tamil Nadu 600096, India</p>
+            </div>
+          </div>
+          <div class="d-flex gap-3 mb-4 contact-info-item">
+            <div class="icon-tile"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <div class="fw-semibold">Email</div>
+              <p class="text-muted-2 mb-0 small"><a href="mailto:hello@orbiq.example">hello@orbiq.example</a></p>
+            </div>
+          </div>
+          <div class="d-flex gap-3 mb-4 contact-info-item">
+            <div class="icon-tile"><i class="bi bi-telephone-fill"></i></div>
+            <div>
+              <div class="fw-semibold">Phone</div>
+              <p class="text-muted-2 mb-0 small"><a href="tel:+914412345678">+91 44 1234 5678</a> &middot; Mon&ndash;Fri, 9am&ndash;6pm IST</p>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="map-frame mt-4">
+            <iframe
+              title="Map showing Orbiq office location in Chennai"
+              src="https://maps.google.com/maps?q=Perungudi%2C%20Chennai%2C%20Tamil%20Nadu&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              width="100%" height="260" style="border:0;" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="section section-surface">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-7">
+          <p class="eyebrow mb-2">FAQ</p>
+          <h2 class="mb-0">Frequently asked questions</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="accordion" id="faqAccordion">
+            {{ faq_item("One", "Do I need engineering help to set up a flow?",
+                "No. Flows are built visually with drag-and-drop steps and pre-built connectors. Most customers set up their first flow in an onboarding call without writing any code.",
+                true) }}
+            {{ faq_item("Two", "Which tools does " + siteName + " connect with?",
+                "Orbiq maintains 40+ native integrations across email, ticketing, chat, spreadsheets, and CRM tools. If something you use isn't listed, our team can usually add it via a custom connector.") }}
+            {{ faq_item("Three", "Is there a free trial?",
+                "Yes — every plan includes a 14-day free trial with full access to integrations and flow building. No credit card is required to start.") }}
+            {{ faq_item("Four", "How is my data kept secure?",
+                "All data is encrypted in transit and at rest. Every flow supports granular, role-based permissions, and every change is recorded in a full audit log.") }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+  <!-- Page-specific script: only the contact page needs form validation -->
+  <script type="module" src="/src/assets/js/contact-form.js"></script>
+{% endblock %}

@@ -1,0 +1,434 @@
+/* ==========================================================================
+   Orbiq — Custom brand stylesheet
+   Layered on top of Bootstrap 5 (CDN). This file only contains what
+   Bootstrap utilities can't already express: design tokens, the hero
+   "orbit" signature graphic, and small component refinements.
+   ========================================================================== */
+
+/* ---- Design tokens ------------------------------------------------------ */
+:root {
+  /* Color */
+  --ink: #14171f;
+  --muted: #5b6472;
+  --base: #ffffff;
+  --surface: #f3f5f9;
+  --surface-2: #e8ebf2;
+  --primary: #2b4fff;
+  --primary-dark: #1e3acc;
+  --primary-tint: #eef1ff;
+  --accent: #ffb020;
+  --accent-dark: #e69a0f;
+  --border: #e2e5ec;
+
+  /* Shape & motion */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 2px 10px rgba(20, 23, 31, 0.06);
+  --shadow-md: 0 14px 34px rgba(20, 23, 31, 0.10);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Type */
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* ---- Base ---------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--base);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.text-muted-2 { color: var(--muted) !important; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.eyebrow.eyebrow-light { color: rgba(255, 255, 255, 0.75); }
+
+a { color: var(--primary); }
+a:hover { color: var(--primary-dark); }
+
+/* Visible keyboard focus everywhere (accessibility floor) */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.form-control:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---- Buttons -------------------------------------------------------------- */
+.btn {
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1.4rem;
+  transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.btn-outline-light:hover { transform: translateY(-1px); }
+
+.btn-lg { padding: 0.8rem 1.8rem; }
+
+/* ---- Navbar ---------------------------------------------------------------- */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  color: var(--ink);
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.navbar .nav-link.active {
+  color: var(--primary);
+}
+
+.navbar .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.15rem;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* ---- Hero ------------------------------------------------------------------ */
+.hero {
+  background: linear-gradient(180deg, var(--primary-tint) 0%, var(--base) 72%);
+  overflow: hidden;
+}
+
+.hero-headline {
+  font-size: clamp(2.25rem, 4vw + 1rem, 3.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.hero-lede {
+  font-size: 1.125rem;
+  color: var(--muted);
+  max-width: 42ch;
+}
+
+/* Signature element: the orbit ring — a small solar-system of nodes that
+   represents disconnected tools being pulled into one automated flow.
+   Purely decorative SVG; motion is subtle and respects reduced-motion. */
+.orbit-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: spin 22s linear infinite;
+}
+
+.orbit-ring.ring-outer { inset: 0; border: 1.5px dashed rgba(43, 79, 255, 0.25); }
+.orbit-ring.ring-inner {
+  inset: 15%;
+  border: 1.5px dashed rgba(255, 176, 32, 0.35);
+  animation-duration: 16s;
+  animation-direction: reverse;
+}
+
+.orbit-core {
+  position: absolute;
+  inset: 38%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #6b7bff);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+.orbit-node {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 1.15rem;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+
+.orbit-node.node-a { animation: orbit-a 22s linear infinite; }
+.orbit-node.node-b { animation: orbit-b 22s linear infinite; }
+.orbit-node.node-c { animation: orbit-c 16s linear infinite reverse; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Each node travels the ring's circumference via rotate -> translate -> counter-rotate,
+   so the icon inside always stays upright while circling the core. */
+@keyframes orbit-a {
+  from { transform: translate(-50%, -50%) rotate(0deg) translateX(220px) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg) translateX(220px) rotate(-360deg); }
+}
+@keyframes orbit-b {
+  from { transform: translate(-50%, -50%) rotate(120deg) translateX(220px) rotate(-120deg); }
+  to   { transform: translate(-50%, -50%) rotate(480deg) translateX(220px) rotate(-480deg); }
+}
+@keyframes orbit-c {
+  from { transform: translate(-50%, -50%) rotate(60deg) translateX(150px) rotate(-60deg); }
+  to   { transform: translate(-50%, -50%) rotate(420deg) translateX(150px) rotate(-420deg); }
+}
+
+@media (max-width: 767.98px) {
+  @keyframes orbit-a { from { transform: translate(-50%, -50%) rotate(0deg) translateX(140px) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg) translateX(140px) rotate(-360deg); } }
+  @keyframes orbit-b { from { transform: translate(-50%, -50%) rotate(120deg) translateX(140px) rotate(-120deg); } to { transform: translate(-50%, -50%) rotate(480deg) translateX(140px) rotate(-480deg); } }
+  @keyframes orbit-c { from { transform: translate(-50%, -50%) rotate(60deg) translateX(95px) rotate(-60deg); } to { transform: translate(-50%, -50%) rotate(420deg) translateX(95px) rotate(-420deg); } }
+}
+
+/* ---- Cards ------------------------------------------------------------------ */
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.card-feature:hover,
+.card-service:hover,
+.card-team:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.icon-tile {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background: var(--primary-tint);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+/* ---- Sections ---------------------------------------------------------------- */
+.section { padding-block: clamp(3.5rem, 6vw, 6rem); }
+.section-surface { background-color: var(--surface); }
+
+.page-header {
+  background: linear-gradient(120deg, #5f6499 0%, var(--primary-dark) 60%, var(--primary) 100%);
+  color: #fff;
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.page-header .eyebrow { color: rgba(255, 255, 255, 0.75); }
+
+/* Stats */
+.stat-figure {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Testimonial */
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+/* Timeline (About page — a genuine sequence: our four-step onboarding process) */
+.timeline { position: relative; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 27px;
+  width: 2px;
+  background: var(--border);
+}
+@media (min-width: 768px) {
+  .timeline::before { left: 50%; transform: translateX(-1px); }
+}
+
+.timeline-item { position: relative; margin-bottom: 2.25rem; }
+.timeline-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* Team */
+.team-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* CTA band */
+.cta-band {
+  background: linear-gradient(120deg, #7070c0 0%, var(--primary-dark) 100%);
+  color: #fff;
+  border-radius: var(--radius);
+}
+
+/* ---- Footer -------------------------------------------------------------------- */
+footer.site-footer {
+  background-color: var(--ink);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+footer.site-footer h6 {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+footer.site-footer a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+footer.site-footer a:hover { color: #fff; }
+
+.social-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: background-color 0.15s var(--ease);
+}
+.social-icon:hover { background-color: var(--primary); color: #fff; }
+
+/* ---- Forms (Contact page) ----------------------------------------------------- */
+.form-control, .form-select {
+  border-radius: var(--radius-sm);
+  border-color: var(--border);
+  padding: 0.65rem 0.9rem;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(43, 79, 255, 0.15);
+}
+
+.contact-info-item .icon-tile { flex-shrink: 0; }
+
+.map-frame {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  filter: grayscale(0.15);
+}
+
+/* Accordion */
+.accordion-button:not(.collapsed) {
+  background-color: var(--primary-tint);
+  color: var(--primary-dark);
+  box-shadow: none;
+}
+.accordion-button:focus { box-shadow: 0 0 0 0.2rem rgba(43, 79, 255, 0.15); }
+
+/* ---- Reduced motion ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .orbit-ring, .orbit-node {
+    animation: none !important;
+  }
+  .orbit-node.node-a { transform: translate(-50%, -50%) rotate(0deg) translateX(220px) rotate(0deg); }
+  .orbit-node.node-b { transform: translate(-50%, -50%) rotate(120deg) translateX(220px) rotate(-120deg); }
+  .orbit-node.node-c { transform: translate(-50%, -50%) rotate(60deg) translateX(150px) rotate(-60deg); }
+  .card, .btn { transition: none; }
+}

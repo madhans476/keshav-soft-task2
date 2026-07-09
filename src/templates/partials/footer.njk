@@ -1,0 +1,61 @@
+{# src/templates/partials/footer.njk
+   Written once, included on every page. `year` and `social` links come
+   from the global site context (scripts/site-context.mjs) so updating
+   them updates every page at once. #}
+
+<footer class="site-footer pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <a class="navbar-brand text-white mb-3 d-inline-flex" href="/index.html">
+          <svg class="brand-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" stroke="#FFB020" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="16" cy="16" r="6" fill="#FFB020"/>
+            <circle cx="27" cy="16" r="2.6" fill="#FFFFFF"/>
+          </svg>
+          {{ siteName }}
+        </a>
+        <p class="small mb-3">Workflow automation for teams who'd rather build things than babysit spreadsheets.</p>
+        <div class="d-flex gap-2">
+          <a href="{{ social.twitter }}" class="social-icon" aria-label="{{ siteName }} on Twitter / X"><i class="bi bi-twitter-x"></i></a>
+          <a href="{{ social.linkedin }}" class="social-icon" aria-label="{{ siteName }} on LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="{{ social.github }}" class="social-icon" aria-label="{{ siteName }} on GitHub"><i class="bi bi-github"></i></a>
+          <a href="{{ social.instagram }}" class="social-icon" aria-label="{{ siteName }} on Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="mb-3">Product</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="/index.html#features">Features</a></li>
+          <li class="mb-2"><a href="/about.html">Integrations</a></li>
+          <li class="mb-2"><a href="/contact.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <h6 class="mb-3">Company</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="/about.html">About</a></li>
+          <li class="mb-2"><a href="/about.html#team">Team</a></li>
+          <li class="mb-2"><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <h6 class="mb-3">Stay in the loop</h6>
+        <p class="small mb-3">Occasional product notes. No spam, ever.</p>
+        <form class="d-flex gap-2" onsubmit="return false;">
+          <label for="footerEmail-{{ page }}" class="visually-hidden">Email address</label>
+          <input type="email" id="footerEmail-{{ page }}" class="form-control form-control-sm" placeholder="you@company.com" required>
+          <button class="btn btn-sm btn-accent" type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <hr class="border-secondary mt-4 mb-3">
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center small gap-2">
+      <span>&copy; {{ year }} {{ siteName }}, Inc. All rights reserved.</span>
+      <span>
+        <a href="#" class="me-3">Privacy</a>
+        <a href="#">Terms</a>
+      </span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,20 @@
+{
+  "name": "orbiq-nunjucks-vite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Orbiq marketing site — Task 2: Nunjucks templates + Vite build (separate from the Task 1 plain-HTML version).",
+  "type": "module",
+  "scripts": {
+    "render": "node scripts/render-templates.mjs",
+    "predev": "npm run render",
+    "dev": "vite",
+    "prebuild": "npm run render",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "chokidar": "^3.6.0",
+    "nunjucks": "^3.2.4",
+    "vite": "^5.4.11"
+  }
+}

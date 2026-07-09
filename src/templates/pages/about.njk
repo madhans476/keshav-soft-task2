@@ -1,0 +1,127 @@
+{# src/templates/pages/about.njk #}
+{% extends "layouts/base.njk" %}
+{% from "partials/macros.njk" import icon_card, team_card, timeline_item, cta_band %}
+
+{% set title = "About " + siteName + " — Who we are and how we work" %}
+{% set description = "Learn about " + siteName + "'s mission, services, team, and the process we follow to get you automated." %}
+{% set page = "about" %}
+
+{% block content %}
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="page-header">
+    <div class="container text-center">
+      <p class="eyebrow mb-2">About {{ siteName }}</p>
+      <h1 class="mb-3">Built by people who were done copy-pasting between apps</h1>
+      <p class="mb-0 opacity-75 mx-auto" style="max-width: 640px;">
+        {{ siteName }} started as an internal tool at a 12-person support team. Three years later,
+        it's the layer that keeps 1,200+ teams' tools talking to each other.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== INTRO ==================== -->
+  <section class="section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <img src="https://placehold.co/640x480/EEF1FF/2B4FFF?text=Orbiq+HQ" class="img-fluid rounded-4 shadow-sm" alt="Orbiq team working in the studio">
+        </div>
+        <div class="col-lg-6">
+          <p class="eyebrow mb-2">Our story</p>
+          <h2 class="mb-3">Automation shouldn't require an engineering team</h2>
+          <p class="text-muted-2 mb-3">
+            We watched operations teams build the same fragile glue — a script here, a Zapier
+            chain there — over and over, and break every time an app updated its API. {{ siteName }}
+            is the answer we wished existed: one visual flow builder, backed by real
+            integrations we maintain for you.
+          </p>
+          <p class="text-muted-2 mb-0">
+            Today we're a remote-first team of 34, headquartered in Chennai with people
+            across four time zones, all still using the product daily to run our own company.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section class="section section-surface">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-7">
+          <p class="eyebrow mb-2">What we do</p>
+          <h2 class="mb-3">Four services, one connected platform</h2>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-diagram-3-fill", "Workflow automation", "Drag-and-drop flows that route, approve, and escalate work automatically.", "service") }}
+        </div>
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-plug-fill", "Integrations hub", "40+ maintained connectors to the tools your team already runs.", "service") }}
+        </div>
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-graph-up-arrow", "Analytics & reporting", "Plain-language reports that show exactly where work is getting stuck.", "service") }}
+        </div>
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-headset", "Onboarding & support", "A dedicated specialist maps your first three flows with you, free.", "service") }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TEAM ==================== -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-7">
+          <p class="eyebrow mb-2">Meet the team</p>
+          <h2 class="mb-3">Small team, wide range of scars from bad tooling</h2>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          {{ team_card("https://placehold.co/300x300/2B4FFF/FFFFFF?text=AK", "Aravind Krishnan", "Co-founder & CEO") }}
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          {{ team_card("https://placehold.co/300x300/1E3ACC/FFFFFF?text=SN", "Sowmya Narayan", "Co-founder & CTO", "#", "bi-github", "#", "GitHub") }}
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          {{ team_card("https://placehold.co/300x300/FFB020/14171F?text=DP", "Deepak Prasad", "Head of Product") }}
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          {{ team_card("https://placehold.co/300x300/5B6472/FFFFFF?text=MI", "Meera Iyer", "Customer Success Lead") }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TIMELINE / HOW WE WORK ==================== -->
+  <section class="section section-surface">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-7">
+          <p class="eyebrow mb-2">Why choose us</p>
+          <h2 class="mb-3">How we get you from signup to automated</h2>
+          <p class="text-muted-2">A genuine four-step process — every customer goes through it in order.</p>
+        </div>
+      </div>
+      <div class="timeline mx-auto" style="max-width: 900px;">
+        {{ timeline_item("01", "Discover", "We map your current process and flag the three steps costing you the most time.", "left") }}
+        {{ timeline_item("02", "Integrate", "Your specialist connects the relevant apps — no code required on your end.", "right") }}
+        {{ timeline_item("03", "Automate", "We build and test your first flows together, live, in a 45-minute session.", "left") }}
+        {{ timeline_item("04", "Scale", "Monthly check-ins to add flows as your team grows — most customers add one a quarter.", "right") }}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  {{ cta_band(
+    "Curious what your first flow would look like?",
+    "Tell us about your process — we'll sketch it out before the call even starts.",
+    "Contact us",
+    "/contact.html"
+  ) }}
+
+{% endblock %}

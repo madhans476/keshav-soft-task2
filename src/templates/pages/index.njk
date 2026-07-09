@@ -1,0 +1,114 @@
+{# src/templates/pages/index.njk #}
+{% extends "layouts/base.njk" %}
+{% from "partials/macros.njk" import icon_card, stat, cta_band %}
+
+{% set title = siteName + " — Workflow automation for connected teams" %}
+{% set description = "Orbiq connects the tools your team already uses and automates the busywork between them." %}
+{% set page = "home" %}
+
+{% block content %}
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="container section">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6">
+          <p class="eyebrow mb-3">Workflow automation</p>
+          <h1 class="hero-headline mb-4">Connect your tools.<br>Let the work orbit itself.</h1>
+          <p class="hero-lede mb-4">
+            {{ siteName }} links the apps your team already runs — inbox, tickets, spreadsheets, chat —
+            into a single automated flow, so status updates chase themselves instead of chasing you.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="/contact.html" class="btn btn-primary btn-lg">
+              Start free trial <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a href="/about.html" class="btn btn-outline-secondary btn-lg">See how it works</a>
+          </div>
+          <div class="d-flex align-items-center gap-3 mt-4 text-muted-2 small">
+            <i class="bi bi-shield-check"></i> No credit card required &middot; Cancel anytime
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <!-- Signature graphic: orbit ring representing tools pulled into one flow -->
+          <div class="orbit-wrap" role="img" aria-label="Illustration of three app icons orbiting a central automation core">
+            <div class="orbit-ring ring-outer"></div>
+            <div class="orbit-ring ring-inner"></div>
+            <div class="orbit-node node-a"><i class="bi bi-envelope-fill"></i></div>
+            <div class="orbit-node node-b"><i class="bi bi-kanban-fill"></i></div>
+            <div class="orbit-node node-c"><i class="bi bi-chat-dots-fill"></i></div>
+            <div class="orbit-core"><i class="bi bi-lightning-charge-fill"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-7">
+          <p class="eyebrow mb-2">What you get</p>
+          <h2 class="mb-3">Everything between "we should automate that" and done</h2>
+          <p class="text-muted-2">Four building blocks. Combine them however your process actually works.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-signpost-split-fill", "Smart routing", "Send each request to the right person automatically, based on rules your team already follows.") }}
+        </div>
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-arrow-repeat", "Live sync", "Keep every connected tool updated in real time, so no one is ever working from stale data.") }}
+        </div>
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-bar-chart-line-fill", "Insight reports", "See where work actually gets stuck, with plain-language reports instead of raw dashboards.") }}
+        </div>
+        <div class="col-md-6 col-lg-3">
+          {{ icon_card("bi-lock-fill", "Secure by design", "Granular permissions and full audit logs, so automation never means losing control.") }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STATS + TESTIMONIAL ==================== -->
+  <section class="section section-surface">
+    <div class="container">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-7">
+          <div class="row text-center g-4">
+            {{ stat("1,200+", "Teams onboard") }}
+            {{ stat("18k", "Hours saved / month") }}
+            {{ stat("40+", "Native integrations") }}
+            {{ stat("99.95%", "Uptime, last 12 months") }}
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card border-0 shadow-sm p-4">
+            <span class="quote-mark">&ldquo;</span>
+            <p class="mb-3">
+              We replaced four spreadsheets and a very tired Slack bot with one {{ siteName }} flow.
+              Our request backlog dropped by half in the first month.
+            </p>
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://placehold.co/48x48/2B4FFF/FFFFFF?text=RM" class="rounded-circle" width="48" height="48" alt="Portrait of Riya Menon">
+              <div>
+                <div class="fw-semibold">Riya Menon</div>
+                <div class="text-muted-2 small">Operations Lead, Fernbridge Co.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  {{ cta_band(
+    "Ready to put your workflow on autopilot?",
+    "Talk to us about your process — we'll show you exactly what to automate first.",
+    "Get in touch",
+    "/contact.html"
+  ) }}
+
+{% endblock %}

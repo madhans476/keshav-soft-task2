@@ -1,0 +1,91 @@
+{# src/templates/partials/macros.njk
+   Parameterized reusable components. Page templates `{% from %}` the
+   ones they need instead of repeating card/section markup by hand.
+   Autoescape is on globally, so pass plain text (not HTML) as
+   arguments — icon names are Bootstrap Icon classes, not markup. #}
+
+{# A feature/service card: icon tile + heading + short description. #}
+{% macro icon_card(icon, heading, text, variant="feature") %}
+<div class="card card-{{ variant }} h-100 p-4 shadow-sm">
+  <div class="icon-tile mb-3"><i class="bi {{ icon }}"></i></div>
+  <h3 class="h5">{{ heading }}</h3>
+  <p class="text-muted-2 mb-0">{{ text }}</p>
+</div>
+{% endmacro %}
+
+{# A single stat figure + label, used in the stats row. #}
+{% macro stat(figure, label) %}
+<div class="col-6 col-md-3">
+  <div class="stat-figure">{{ figure }}</div>
+  <p class="text-muted-2 small mb-0">{{ label }}</p>
+</div>
+{% endmacro %}
+
+{# A team member card: photo, name, role, and social links. #}
+{% macro team_card(photoUrl, name, role, linkedin="#", extraIcon="bi-twitter-x", extraHref="#", extraLabel="Twitter / X") %}
+<div class="card card-team h-100 p-3 text-center shadow-sm">
+  <img src="{{ photoUrl }}" class="team-photo mb-3" alt="Portrait of {{ name }}">
+  <h3 class="h6 mb-1">{{ name }}</h3>
+  <p class="text-muted-2 small mb-2">{{ role }}</p>
+  <div class="d-flex justify-content-center gap-2">
+    <a href="{{ linkedin }}" class="text-muted-2" aria-label="{{ name }} on LinkedIn"><i class="bi bi-linkedin"></i></a>
+    <a href="{{ extraHref }}" class="text-muted-2" aria-label="{{ name }} on {{ extraLabel }}"><i class="bi {{ extraIcon }}"></i></a>
+  </div>
+</div>
+{% endmacro %}
+
+{# One step of the "How we work" timeline. `side` is "left" or "right"
+   so the caller can alternate which column the copy sits in on desktop. #}
+{% macro timeline_item(number, heading, text, side="left") %}
+<div class="timeline-item row g-3 align-items-start">
+  {% if side == "left" %}
+    <div class="col-md-6 order-md-1 d-flex gap-3">
+      <div class="timeline-badge">{{ number }}</div>
+      <div>
+        <h3 class="h5 mb-1">{{ heading }}</h3>
+        <p class="text-muted-2 mb-0 small">{{ text }}</p>
+      </div>
+    </div>
+    <div class="col-md-6 order-md-2 d-none d-md-block"></div>
+  {% else %}
+    <div class="col-md-6 order-md-1 d-none d-md-block"></div>
+    <div class="col-md-6 order-md-2 d-flex gap-3">
+      <div class="timeline-badge">{{ number }}</div>
+      <div>
+        <h3 class="h5 mb-1">{{ heading }}</h3>
+        <p class="text-muted-2 mb-0 small">{{ text }}</p>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endmacro %}
+
+{# One Bootstrap accordion item. `expanded` controls whether it starts open. #}
+{% macro faq_item(id, question, answer, expanded=false) %}
+<div class="accordion-item">
+  <h3 class="accordion-header" id="faqHeading{{ id }}">
+    <button class="accordion-button {{ '' if expanded else 'collapsed' }}" type="button" data-bs-toggle="collapse"
+            data-bs-target="#faq{{ id }}" aria-expanded="{{ 'true' if expanded else 'false' }}" aria-controls="faq{{ id }}">
+      {{ question }}
+    </button>
+  </h3>
+  <div id="faq{{ id }}" class="accordion-collapse collapse {{ 'show' if expanded }}" aria-labelledby="faqHeading{{ id }}" data-bs-parent="#faqAccordion">
+    <div class="accordion-body text-muted-2">
+      {{ answer }}
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{# The repeated dark CTA band ("Ready to...?") used on both Home and About. #}
+{% macro cta_band(heading, subtext, buttonText, buttonHref) %}
+<section class="section">
+  <div class="container">
+    <div class="cta-band p-4 p-md-5 text-center">
+      <h2 class="mb-2">{{ heading }}</h2>
+      <p class="mb-4 opacity-75">{{ subtext }}</p>
+      <a href="{{ buttonHref }}" class="btn btn-accent btn-lg">{{ buttonText }} <i class="bi bi-arrow-right ms-1"></i></a>
+    </div>
+  </div>
+</section>
+{% endmacro %}

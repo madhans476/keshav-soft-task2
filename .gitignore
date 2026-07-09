@@ -1,0 +1,8 @@
+node_modules/
+dist/
+
+# These are generated at build/dev time by scripts/render-templates.mjs
+# from src/templates/pages/*.njk — do not hand-edit or commit them.
+/index.html
+/about.html
+/contact.html
